@@ -4,5 +4,7 @@
     = stylesheet_link_tag 'application'
     %title .portrait.
   %body
-    %h1 portrait
+    .header
+      = link_to_if @current_user.nil?, 'Forgot my password', new_password_reset_path, id: 'password_reset'
+      %h1 portrait
     #Content= yield
