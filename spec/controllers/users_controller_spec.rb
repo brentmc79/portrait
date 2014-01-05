@@ -15,7 +15,7 @@ describe UsersController do
   
   it 'handles /users with valid params and POST' do
     running {
-      post :create, user: {name: 'name', password: 'password', email: 'test@email.com'}
+      post :create, user: {name: 'name', password: 'password', password_confirmation: 'password', email: 'test@email.com'}
       response.should redirect_to(users_path)
     }.should change(User, :count).by(1)
   end

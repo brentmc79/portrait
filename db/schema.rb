@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140105073613) do
+ActiveRecord::Schema.define(version: 20140105210552) do
 
   create_table "sites", force: true do |t|
     t.string   "url"
@@ -33,11 +33,10 @@ ActiveRecord::Schema.define(version: 20140105073613) do
     t.integer  "sites_count",            default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "password_hash"
-    t.string   "password_salt"
     t.string   "email"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "password_digest"
   end
 
 end

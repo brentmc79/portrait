@@ -1,6 +1,5 @@
 jordan:
   name: jordan
   email: jordan@email.com
-  password_hash: $2a$10$9CS.K4d0W6bQx/VjoR99qe3sJBoA8E0yFyr8Wls1dGqfCtE1X/TCm
-  password_salt: $2a$10$9CS.K4d0W6bQx/VjoR99qe
+  password_digest: $2a$10$9CS.K4d0W6bQx/VjoR99qe3sJBoA8E0yFyr8Wls1dGqfCtE1X/TCm
   admin: true

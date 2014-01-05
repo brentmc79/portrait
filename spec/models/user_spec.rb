@@ -36,7 +36,7 @@ describe User, 'validations' do
   end
 
   it 'should have a password' do
-    User.new.should have(1).error_on(:password)
+    User.new.should have(2).error_on(:password)
   end
 
   it 'should not need a password on update' do
