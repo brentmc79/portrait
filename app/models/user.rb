@@ -1,13 +1,30 @@
 class User < ActiveRecord::Base
-  
-  def self.authenticate(name, password)
-    User.where(name: name, password: password).first
-  end
-  
+
+  attr_accessor :password
+
+  before_save :encrypt_password
+
   has_many :sites, :dependent=>:destroy
-  
-  def to_param() name end
-  
-  validates :password, presence: true
+
+  validates :password, presence: true, on: :create
   validates :name, uniqueness: true, format: /[a-z0-9]+/
+  validates :email, uniqueness: true, presence: true
+
+  def to_param() name end
+
+  def self.authenticate(name, password)
+    user = find_by_name(name)
+    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
+      user
+    else
+      nil
+    end
+  end
+
+  def encrypt_password
+    if password.present?
+      self.password_salt = BCrypt::Engine.generate_salt
+      self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
+    end
+  end
 end

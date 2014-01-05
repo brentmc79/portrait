@@ -15,7 +15,7 @@ describe UsersController do
   
   it 'handles /users with valid params and POST' do
     running {
-      post :create, user: {name: 'name', password: 'password'}
+      post :create, user: {name: 'name', password: 'password', email: 'test@email.com'}
       response.should redirect_to(users_path)
     }.should change(User, :count).by(1)
   end
@@ -29,7 +29,7 @@ describe UsersController do
   
   it 'handles /users/:id with invalid params and PUT' do
     user = users(:jordan)
-    put :update, id: user, user: {password: ''}
+    put :update, id: user, user: {email: ''}
     user.reload.name.should_not == ''
     response.should be_success
     response.should render_template(:show)
